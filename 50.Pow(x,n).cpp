@@ -1,5 +1,5 @@
 // ConsoleApplication4.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
-//
+// https://leetcode.com/problems/powx-n/
 
 #include <iostream>
 #include <cmath>
