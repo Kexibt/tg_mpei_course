@@ -1,0 +1,11 @@
+// https://leetcode.com/problems/sqrtx/submissions/
+
+class Solution {
+public:
+    int mySqrt(int x) {
+    long long s;
+	for (s = 0; s * s <= x; ++s) {
+		if (s * s == x) return s;
+	} return s-1;    
+    }
+};
