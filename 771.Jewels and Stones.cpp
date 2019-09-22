@@ -1,27 +1,22 @@
 // ConsoleApplication2.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
 // https://leetcode.com/problems/jewels-and-stones/
 
-#include <iostream>
-#include <vector>
-#include <map>
-#include <cmath>
-using namespace std;
-
-int main(int argc, char* argv[])
-{
-		setlocale(LC_ALL, "");
-		map <char, bool> isJ;
-		string J, S;
-		char c;
-		cin >> J;
-		for (int i = 0; i < J.size(); ++i) {
-			isJ[J[i]] = true;
+class Solution {
+public:
+    double myPow(double x, int n) {
+    int count=0;
+    if (n == 0) return 1;
+	if (n == 1) return x;
+	if (x == 0 || x == 1) return x;
+	do {
+		if (n % 2 == 0) {
+			count++; n /= 2;
 		}
-		int count = 0;
-		cin >> S;
-		for (int i = 0; i < S.size(); ++i) {
-			if (isJ[S[i]]) ++count;
-		}
-		cout << count;
-		return 0;
-}
+	} while (n % 2 == 0);
+	x = pow(x, n);
+	for (int i = 0; i < count; ++i) {
+		x *= x;
+	}
+	return x;
+    }
+};
