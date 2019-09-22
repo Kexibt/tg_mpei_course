@@ -5,14 +5,8 @@ public:
     int trailingZeroes(int n) {
     int j;
 	int count5 = 0;
-	for (int i = 1; i <= n; ++i) 
-		if (i % 5 == 0) {
-			j = i;
-			while (j % 5 == 0) {
-				++count5;
-				j /= 5;
-			}
-		}
+	for (int i = 5; i <= n; i+=5) 
+		++count5;
 	return count5;
     }
 };
