@@ -2,20 +2,16 @@
 
 class Solution {
 public:
-    double myPow(double x, int n) {
-    int count=0;
-    if (n == 0) return 1;
-	if (n == 1) return x;
-	if (x == 0 || x == 1) return x;
-	do {
-		if (n % 2 == 0) {
-			count++; n /= 2;
+    int numJewelsInStones(string J, string S) {
+		map <char, bool> isJ;
+		char c;
+		for (int i = 0; i < J.size(); ++i) {
+			isJ[J[i]] = true;
 		}
-	} while (n % 2 == 0);
-	x = pow(x, n);
-	for (int i = 0; i < count; ++i) {
-		x *= x;
-	}
-	return x;
-    }
-};
+		int count = 0;
+		for (int i = 0; i < S.size(); ++i) {
+			if (isJ[S[i]]) ++count;
+		}
+        return count;
+    };
+    };
