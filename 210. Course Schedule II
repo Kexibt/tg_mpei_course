@@ -1,0 +1,34 @@
+//https://leetcode.com/problems/course-schedule-ii/
+
+class Solution {
+public:
+    bool dfs(vector<vector<int>> &g, vector<int> &visited, int i, vector<int> &res){
+        if (visited[i] == -1) return 0;
+        if (visited[i] == 1)  return 1;
+        visited[i] = -1;
+        for (auto it : g[i]){
+            if (!dfs(g, visited, it, res))
+                return 0;
+        }
+        res.push_back(i);
+        visited[i] = 1;
+        return 1;
+    }
+
+    vector<int> findOrder(int n, vector<vector<int>>& p){
+        vector<int> visited(n, 0);
+        vector<int> res;
+        vector<vector<int>> g(n);
+        for (int i=0; i<p.size(); i++)
+            g[p[i][1]].push_back(p[i][0]);
+        
+        for (int i=0; i<n; i++){
+            if (!dfs(g, visited, i, res)){
+                vector<int> ans;
+                return ans;
+            }
+        }
+        reverse(res.begin(), res.end());
+        return res;
+    }
+};
