@@ -1,0 +1,54 @@
+//https://leetcode.com/problems/add-one-row-to-tree/
+class Solution {
+public:
+    TreeNode* addOneRow(TreeNode* root, int v, int d) 
+    {
+        if (d < 1 || root == nullptr)
+            return root;
+        if (d == 1)    
+        {
+            TreeNode* curr = new TreeNode(v);
+            curr -> left = root;
+            return curr;
+        }
+        
+        queue<TreeNode*> Que;
+        Que.push(root);
+        Que.push(nullptr);
+        int n = 1;
+        while (n < d - 1 && !Que.empty())
+        {
+            TreeNode* tmp = Que.front();
+            Que.pop();
+            if (tmp == nullptr)
+            {
+                n++;
+                if (!Que.empty())
+                    Que.push(nullptr);
+                continue;
+            }
+            
+            if (tmp -> left != nullptr)
+                Que.push(tmp -> left);
+            if (tmp -> right != nullptr)
+                Que.push(tmp -> right);
+        }
+        
+        while (!Que.empty())
+        {
+            TreeNode* tmpl = new TreeNode(v);
+            TreeNode* tmpr = new TreeNode(v);
+            TreeNode* tmp = Que.front();
+            Que.pop();
+            
+            if (tmp != nullptr)
+            {
+                tmpl -> left = tmp -> left;
+                tmpr -> right = tmp -> right;
+                tmp -> left = tmpl;
+                tmp -> right = tmpr;
+            }
+        }
+        return root;
+    }
+};
