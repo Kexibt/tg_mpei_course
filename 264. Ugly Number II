@@ -1,0 +1,19 @@
+//https://leetcode.com/problems/ugly-number-ii/
+class Solution {
+public:
+    int nthUglyNumber(int n)
+    {
+        set<size_t> isUgly;
+        isUgly.insert(1);
+        size_t top = 0;
+        for (size_t i = 0; i < n; i++)
+        {
+            top = *isUgly.lower_bound(top+1);//Первый, равный top+1
+            isUgly.insert(top*2);
+            isUgly.insert(top*3);
+            isUgly.insert(top*5);
+        }
+        
+        return top;
+    }
+};
