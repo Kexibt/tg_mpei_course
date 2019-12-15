@@ -1,0 +1,23 @@
+//https://leetcode.com/problems/rectangle-area/
+class Solution
+{
+public:
+	int computeArea(int A, int B, int C, int D, int E, int F, int G, int H)
+	{
+		int x_r = min(C, G);
+		int x_l = max(A, E);
+		int y_t = min(D, H);
+		int y_b = max(F, B);
+
+		int s1 = (C - A) * (D - B);
+		int s2 = 0;
+		if (x_r > x_l &&  y_t > y_b)
+		{
+			s2 = (x_r - x_l) * (y_t - y_b);
+		}
+
+		int s3 = (G - E) * (H - F);
+
+		return s1 - s2 + s3;
+	}
+};
