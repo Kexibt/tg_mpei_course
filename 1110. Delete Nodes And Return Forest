@@ -8,16 +8,17 @@
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
+ 
 class Solution {
 public:
    vector<TreeNode*> delNodes(TreeNode* root, vector<int>& to_delete) {
-        std::set<int> st(to_delete.begin(), to_delete.end());
+        set<int> st(to_delete.begin(), to_delete.end());
         vector<TreeNode*> ret;
         dfs(root, st, ret, true);
         return ret;
     }
     
-    void dfs(TreeNode* root, std::set<int>& st, vector<TreeNode*>& ret, bool parentDeleted) {
+    void dfs(TreeNode* root, set<int>& st, vector<TreeNode*>& ret, bool parentDeleted) {
         if (!root) return;
         bool shouldDelete = st.count(root->val);
         if (parentDeleted && !shouldDelete) {
